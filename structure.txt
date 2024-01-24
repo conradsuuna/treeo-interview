@@ -1,0 +1,42 @@
+src/
+|-- app.controller.ts
+|-- app.module.ts
+|-- app.service.ts
+|-- main.ts
+|-- shared/
+|   |-- dto/
+|   |   |-- some.dto.ts
+|   |-- interfaces/
+|   |   |-- some.interface.ts
+|   |-- enums/
+|   |   |-- some.enum.ts
+|-- modules/
+|   |-- module1/
+|   |   |-- module1.controller.ts
+|   |   |-- module1.service.ts
+|   |   |-- module1.module.ts
+|   |   |-- module1.repository.ts (if using TypeORM)
+|   |-- module2/
+|   |   |-- module2.controller.ts
+|   |   |-- module2.service.ts
+|   |   |-- module2.module.ts
+|   |   |-- module2.repository.ts (if using TypeORM)
+|-- config/
+|   |-- configuration.ts
+|   |-- validation.ts
+|-- middlewares/
+|   |-- some.middleware.ts
+|-- guards/
+|   |-- some.guard.ts
+|-- filters/
+|   |-- some.filter.ts
+|-- interceptors/
+|   |-- some.interceptor.ts
+|-- decorators/
+|   |-- some.decorator.ts
+|-- providers/
+|   |-- some.provider.ts
+|-- utils/
+|   |-- some.util.ts
+|-- exceptions/
+|   |-- some.exception.ts
