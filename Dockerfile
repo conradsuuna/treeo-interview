@@ -24,12 +24,14 @@ RUN npm run build
 RUN npm ci --omit=dev && npm cache clean --force
 
 # Switch to root user to access secret file
-# USER root
+USER root
 # Switch back to non-root user
-USER node
+# USER node
 
 # Expose the port that the Nest.js app is running on
 EXPOSE 3000
 
+# start with hot reload in dev mode
+CMD ["npm", "run", "start:dev"]
 # Start the Nest.js app
-CMD ["npm", "run", "start:prod"]
+# CMD ["npm", "run", "start:prod"]

@@ -7,18 +7,18 @@ services:
     ports:
       - 3003:3000 # to test, use port 3003
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      # - NODE_ENV=production
     env_file:
       - .env
     depends_on:
       - postgres
+    volumes:
+      - ./src:/app/src  # Mount your source code into the container for hot-reloading
+      
 
   postgres:
     image: postgres:latest
-    # environment:
-    #   POSTGRES_DB: treeoDB
-    #   POSTGRES_USER: postgres
-    #   POSTGRES_PASSWORD: postgres
     env_file:
       - .env
     ports:

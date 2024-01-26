@@ -1,4 +1,5 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { Post } from '../posts/models/post.model';
 
 @Table
 export class User extends Model {
@@ -14,6 +15,6 @@ export class User extends Model {
   @Column({ allowNull: false })
   password: string;
 
-  @Column({ defaultValue: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
+  @HasMany(() => Post)
+  posts: Post[];
 }
