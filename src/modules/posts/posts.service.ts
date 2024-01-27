@@ -1,10 +1,10 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './models/post.model';
 import { User } from '../user/user.model';
 import { Image } from './models/image.model';
-import moment from 'moment';
 import { Sequelize } from 'sequelize-typescript';
+import * as moment from "moment";
 
 @Injectable()
 export class PostsService {
@@ -144,9 +144,9 @@ export class PostsService {
           status: HttpStatus.NOT_FOUND,
         }
       }
-      const now = moment();
-      const deletedAt = moment(post.deleted_at);
-      const hoursDifference = now.diff(deletedAt, 'hours');
+      const now = moment().format('YYYY-MM-DD HH:mm:ss');
+      const deletedAt = moment(post.deleted_at).format('YYYY-MM-DD HH:mm:ss');
+      const hoursDifference = moment(now).diff(deletedAt, 'hours');
       if (hoursDifference > 24) {
         return {
           message: 'Post cannot be retrieved after 24 hours',

@@ -7,6 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { PostsModule } from './modules/posts/posts.module';
+import moment from 'moment';
 
 @Module({
   imports: [
@@ -33,7 +34,12 @@ import { PostsModule } from './modules/posts/posts.module';
     PostsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: 'MomentWrapper',
+      useValue: moment
+    },],
 })
 
 export class AppModule { }
