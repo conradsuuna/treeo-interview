@@ -8,8 +8,6 @@ import { Image } from './models/image.model';
 @Module({
   controllers: [PostsController],
   providers: [PostsService],
-  imports: [
-    SequelizeModule.forFeature([Post, Image]),
-  ],
+  imports: [SequelizeModule.forFeature([Post, Image])],
 })
 export class PostsModule {}

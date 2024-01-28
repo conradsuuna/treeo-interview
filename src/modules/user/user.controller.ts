@@ -3,14 +3,14 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
-    @Post('register')
-    async register(@Body() userData: any) {
-        try {
-            return this.userService.register(userData);
-        } catch (error) {
-            throw new Error(error);
-        }
+  @Post('register')
+  async register(@Body() userData: any) {
+    try {
+      return this.userService.register(userData);
+    } catch (error) {
+      throw new Error(error);
     }
+  }
 }

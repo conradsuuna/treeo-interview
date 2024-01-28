@@ -38,8 +38,8 @@ import moment from 'moment';
     AppService,
     {
       provide: 'MomentWrapper',
-      useValue: moment
-    },],
+      useValue: moment,
+    },
+  ],
 })
-
-export class AppModule { }
+export class AppModule {}

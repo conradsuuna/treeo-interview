@@ -12,10 +12,7 @@ export class UserService {
 
   async register(userData: any): Promise<User> {
     const saltOrRounds = 10;
-    const hashedPassword = await bcrypt.hash(
-        userData.password,
-      saltOrRounds,
-    );
+    const hashedPassword = await bcrypt.hash(userData.password, saltOrRounds);
     userData.password = hashedPassword;
     const user = await this.userModel.create(userData);
     return user;

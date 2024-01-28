@@ -4,7 +4,7 @@ import { Post } from './models/post.model';
 import { User } from '../user/user.model';
 import { Image } from './models/image.model';
 import { Sequelize } from 'sequelize-typescript';
-import * as moment from "moment";
+import * as moment from 'moment';
 
 @Injectable()
 export class PostsService {
@@ -14,9 +14,12 @@ export class PostsService {
     private readonly postModel: typeof Post,
     @InjectModel(Image)
     private readonly imageModel: typeof Image,
-  ) { }
+  ) {}
 
-  async togglePostViewStatus(postId: number, userId: number): Promise<Post | any> {
+  async togglePostViewStatus(
+    postId: number,
+    userId: number,
+  ): Promise<Post | any> {
     try {
       const post = await this.postModel.findOne({
         where: { id: postId, poster_id: userId },
@@ -25,7 +28,7 @@ export class PostsService {
         return {
           message: 'Post not found',
           status: HttpStatus.NOT_FOUND,
-        }
+        };
       }
       return await post.update({ is_public: !post.is_public });
     } catch (error) {
@@ -121,7 +124,7 @@ export class PostsService {
         return {
           message: 'Post not found',
           status: HttpStatus.NOT_FOUND,
-        }
+        };
       }
       await post.update({ is_deleted: true, deleted_at: new Date() });
       return {
@@ -142,7 +145,7 @@ export class PostsService {
         return {
           message: 'Post not found',
           status: HttpStatus.NOT_FOUND,
-        }
+        };
       }
       const now = moment().format('YYYY-MM-DD HH:mm:ss');
       const deletedAt = moment(post.deleted_at).format('YYYY-MM-DD HH:mm:ss');
@@ -151,7 +154,7 @@ export class PostsService {
         return {
           message: 'Post cannot be retrieved after 24 hours',
           status: HttpStatus.BAD_REQUEST,
-        }
+        };
       }
       await post.update({ is_deleted: false, deleted_at: null });
       return {

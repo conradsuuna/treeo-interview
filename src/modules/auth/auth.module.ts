@@ -19,6 +19,6 @@ dotenv.config();
     }),
   ],
   providers: [AuthService, LocalStrategy],
-  controllers: [AuthController]
+  controllers: [AuthController],
 })
 export class AuthModule {}
