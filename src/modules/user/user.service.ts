@@ -10,7 +10,14 @@ export class UserService {
     private readonly userModel: typeof User,
   ) {}
 
-  async register(userData: any): Promise<User> {
+  async register(userData: any): Promise<User | any> {
+    const existingUser = await this.getUser(userData.email);
+    if (existingUser) {
+      return {
+        message: 'User with supplied email already exists',
+        status: 400,
+      }
+    }
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(userData.password, saltOrRounds);
     userData.password = hashedPassword;
