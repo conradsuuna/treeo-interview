@@ -4,7 +4,6 @@ import { Post } from './models/post.model';
 import { User } from '../user/user.model';
 import { Image } from './models/image.model';
 import { Sequelize } from 'sequelize-typescript';
-import * as moment from 'moment';
 
 @Injectable()
 export class PostsService {
@@ -147,9 +146,12 @@ export class PostsService {
           status: HttpStatus.NOT_FOUND,
         };
       }
-      const now = moment().format('YYYY-MM-DD HH:mm:ss');
-      const deletedAt = moment(post.deleted_at).format('YYYY-MM-DD HH:mm:ss');
-      const hoursDifference = moment(now).diff(deletedAt, 'hours');
+      const now = new Date().getTime();
+      const deletedAt = new Date(post.deleted_at).getTime();
+      // Calculate the time difference in milliseconds
+      const timeDiff = Math.abs(now - deletedAt);
+      // Convert time difference to hours
+      const hoursDifference = timeDiff / (1000 * 60 * 60);
       if (hoursDifference > 24) {
         return {
           message: 'Post cannot be retrieved after 24 hours',
